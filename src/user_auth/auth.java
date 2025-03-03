@@ -15,14 +15,32 @@ public class auth {
         System.out.print("Enter your password: ");
         var password = console.nextLine().strip().toLowerCase();
 
-        if (username.equals(USERNAME_VALID) && password.equals(PASSWORD_VALID)) {
-            System.out.println("Welcome " + username + "!");
-        } else if (!username.equals(USERNAME_VALID) && password.equals(PASSWORD_VALID)) {
-            System.out.println("Invalid username.");
-        } else if (username.equals(USERNAME_VALID) && !password.equals(PASSWORD_VALID)) {
-            System.out.println("Invalid password.");
-        } else {
-            System.out.println("Invalid username and password.");
-        }
+//        if (username.equals(USERNAME_VALID) && password.equals(PASSWORD_VALID)) {
+//            System.out.println("Welcome " + username + "!");
+//        } else if (!username.equals(USERNAME_VALID) && password.equals(PASSWORD_VALID)) {
+//            System.out.println("Invalid username.");
+//        } else if (username.equals(USERNAME_VALID) && !password.equals(PASSWORD_VALID)) {
+//            System.out.println("Invalid password.");
+//        } else {
+//            System.out.println("Invalid username and password.");
+//        }
+
+        var message = switch (username){
+            case USERNAME_VALID -> {
+                if (PASSWORD_VALID.equals(password)) {
+                    yield "Welcome " + username + "!";
+                } else {
+                    yield "Invalid password.";
+                }
+            }
+            default -> {
+                if (PASSWORD_VALID.equals(password)) {
+                    yield "Invalid username.";
+                } else {
+                    yield "Invalid username and password.";
+                }
+            }
+        };
+        System.out.println(message);
     }
 }

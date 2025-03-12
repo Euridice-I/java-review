@@ -8,17 +8,15 @@ public class Snack implements Serializable {
     private int id;
     private String name;
     private double price;
-    private int quantity;
 
     public Snack(){
         this.id = ++snackCount;
     }
 
-    public Snack(String name, double price, int quantity){
+    public Snack(String name, double price){
         this();
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
     }
 
     public static int getSnackCount() {
@@ -45,13 +43,6 @@ public class Snack implements Serializable {
         this.price = price;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 
     @Override
     public String toString() {
@@ -59,7 +50,6 @@ public class Snack implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", quantity=" + quantity +
                 '}';
     }
 
@@ -67,11 +57,11 @@ public class Snack implements Serializable {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Snack snack = (Snack) o;
-        return id == snack.id && Double.compare(price, snack.price) == 0 && quantity == snack.quantity && Objects.equals(name, snack.name);
+        return id == snack.id && Double.compare(price, snack.price) == 0 && Objects.equals(name, snack.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, quantity);
+        return Objects.hash(id, name, price);
     }
 }
